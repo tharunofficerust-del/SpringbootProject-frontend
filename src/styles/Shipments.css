@@ -1,0 +1,142 @@
+.shipment-container {
+    width: 100%;
+}
+
+.shipment-form {
+    margin-top: 20px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.shipment-form h2 {
+    margin-bottom: 25px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+}
+
+.save-btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    border: none;
+    background-color: #1f2937;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    opacity: 0.9;
+}
+
+.shipment-table {
+    margin-top: 30px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f3f4f6;
+}
+
+.priority {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* LOW */
+
+.priority.LOW {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+/* MEDIUM */
+
+.priority.MEDIUM {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+/* HIGH */
+
+.priority.HIGH {
+    background-color: #fed7aa;
+    color: #c2410c;
+}
+
+/* CRITICAL */
+
+.priority.CRITICAL {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.shipment-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.shipment-status.ASSIGNED_TO_VESSEL {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.shipment-status.IN_TRANSIT {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.shipment-status.AT_RISK {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.shipment-status.DELAYED {
+    background: #fed7aa;
+    color: #c2410c;
+}
+
+.shipment-status.DELIVERED {
+    background: #dcfce7;
+    color: #15803d;
+}

@@ -12,17 +12,34 @@ function Vessels() {
     const [totalPages, setTotalPages] = useState(0);
 
     const fetchVessels = async () => {
-
-    const response = await api.get(
+        try {
+            const response = await api.get(
                 `/vessels/schedules?page=${page}&size=5&direction=desc`
             );
+            setVessels(
+                response.data.vessels
+            );
+            setTotalPages(
+                response.data.totalPages
+            );
+        } catch (error) {
 
-            setVessels(response.data.vessels);
-            setTotalPages(response.data.totalPages);
-        };
+            console.error(
+                "Failed to fetch vessels:",
+                error
+            );
 
-        useEffect(() => {
+            toast.error(
+                error.response?.data?.message ||
+                "Unable to load vessels."
+            );
+        }
+    };
+
+    useEffect(() => {
+    
             fetchVessels();
+    
         }, [page]);
 
     const [vessel, setVessel] = useState({
@@ -84,19 +101,34 @@ function Vessels() {
 
             fetchVessels(); //fetching after posting.
 
+            //clear form after save
+            setVessel({
+                vesselName: "",
+                voyageNumber: "",
+                originPort: "",
+                destinationPort: "",
+                plannedDepartureDate: "",
+                plannedArrivalDate: "",
+                vesselCapacityTEU: "",
+                scheduleStatus: "PLANNED"
+            });
+
                 console.log("Posted successfully:") //just testing - remove showing actual data after fixing
 
         } catch(error){
+                const data = error.response.data;
+                if(data.message){
+                    toast.error(data.message);
+                }
+                else{
+                    Object.values(data)
+                        .forEach((message)=>{
 
-            Object.values(
-                error.response.data
-            ).forEach((message)=>{
+                            toast.error(message);
 
-                toast.error(message);
-
-            });
-
-        }
+                        });
+                }
+            }
     };
 
     //for formatting date from backend
@@ -142,11 +174,13 @@ function Vessels() {
             }
         };
 
+    const delayed = vessel.currentEta !== vessel.plannedArrivalDate;
+
 
     return (
         <div className="vessels-container">
 
-            <h1>Vessels</h1>
+            <h1>Vessel Management</h1>
 
             <div className="vessel-form">
 
@@ -281,6 +315,7 @@ function Vessels() {
                             <th>Planned Departure Date</th>
                             <th>Destination</th>
                             <th>Planned Arrival Date</th>
+                            <th>Current ETA</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -304,6 +339,22 @@ function Vessels() {
                                             vessel.plannedArrivalDate
                                         )}
                                     </td>
+                                    <td className={
+                                            vessel.currentEta &&
+                                            vessel.currentEta !== vessel.plannedArrivalDate
+                                                ? "eta-delayed"
+                                                : ""
+                                        }
+                                    >
+                                        {
+                                            vessel.currentEta
+                                                ? formatDate(vessel.currentEta)
+                                                : formatDate(
+                                                    vessel.plannedArrivalDate
+                                                )
+                                        }
+                                    </td>
+
                                     <td>
                                         <span
                                             className={
