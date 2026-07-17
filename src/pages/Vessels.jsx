@@ -14,7 +14,7 @@ function Vessels() {
     const fetchVessels = async () => {
 
     const response = await api.get(
-                `/vessels/schedules?page=${page}&size=5`
+                `/vessels/schedules?page=${page}&size=5&direction=desc`
             );
 
             setVessels(response.data.vessels);
@@ -44,16 +44,29 @@ function Vessels() {
             });
     };
 
-    const handleStatusChange = (
-        voyageNumber,
-        newStatus
-    ) => {
-
-        console.log(
+    const handleStatusChange = async (
             voyageNumber,
             newStatus
-        );
-    };
+        ) => {
+            try {
+                await api.put(
+                    `/vessels/schedules/${voyageNumber}/status`,
+                    {
+                        scheduleStatus: newStatus
+                    }
+                );
+                toast.success(
+                    `Status updated to ${newStatus}`
+                );
+                fetchVessels();
+            } 
+            catch (error) {
+                toast.error(
+                    "Failed to update vessel status."
+                );
+                console.log(error);
+            }
+        };
 
 
     //submit part with the toast library for success and error messages
