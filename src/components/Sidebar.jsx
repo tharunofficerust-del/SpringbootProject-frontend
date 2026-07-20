@@ -15,19 +15,19 @@ function Sidebar() {
             </div>
 
             <nav>
-                <NavLink to="/">
+                <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
                     <FaHome /> Dashboard
                 </NavLink>
 
-                <NavLink to="/vessels">
+                <NavLink to="/vessels" className={({ isActive }) => isActive ? "active" : ""}>
                     <FaShip /> Vessels
                 </NavLink>
 
-                <NavLink to="/shipments">
+                <NavLink to="/shipments" className={({ isActive }) => isActive ? "active" : ""}>
                     <FaBox /> Shipments
                 </NavLink>
 
-                <NavLink to="/delays">
+                <NavLink to="/delays" className={({ isActive }) => isActive ? "active" : ""}>
                     <FaExclamationTriangle /> Delays
                 </NavLink>
             </nav>

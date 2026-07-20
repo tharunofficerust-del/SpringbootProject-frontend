@@ -54,47 +54,70 @@ function Delays() {
 
     }, []);
 
+
+    //submit 
   const handleSubmit = async () => {
 
-            try {
+        try {
 
-                setLoading(true);
+            setLoading(true);
+
+            if (editingId) {
+
+                await api.put(
+                    `/delays/${editingId}`,
+                    delay
+                );
+
+                toast.success(
+                    "Delay updated successfully."
+                );
+
+            } else {
 
                 await api.post(
                     "/delays",
                     delay
                 );
 
-                fetchDelays();
-
                 toast.success(
-                    "Delay Report Created!"
+                    "Delay created successfully."
                 );
-
-                setDelay({
-                    voyageNumber: "",
-                    delayReason: "PORT_CONGESTION",
-                    delayHours: "",
-                    reportedPort: "",
-                    remarks: "",
-                    reportedDate: ""
-                });
-
-            } catch (error) {
-
-                console.log(error);
-
-                toast.error(
-                    error.response?.data?.message ||
-                    "Failed to create delay."
-                );
-
-            } finally {
-
-                setLoading(false);
             }
-        };
 
+            setEditingId(null);
+
+            setDelay({
+                voyageNumber: "",
+                delayReason: "PORT_CONGESTION",
+                delayHours: "",
+                reportedPort: "",
+                reportedDate: "",
+                remarks: ""
+            });
+
+            fetchDelays();
+            fetchVessels();
+
+        } catch (error) {
+
+            console.log(
+                "Delay API Error:",
+                error.response?.data
+            );
+
+            toast.error(
+                error.response?.data?.message ||
+                (editingId
+                    ? "Failed to update delay."
+                    : "Failed to create delay.")
+            );
+
+        } finally {
+
+            setLoading(false);
+        }
+    };
 
       const fetchDelays = async () => {
         try {
@@ -114,6 +137,58 @@ function Delays() {
             toast.error(
                 error.response?.data?.message ||
                 "Unable to load delay reports."
+            );
+        }
+    };
+
+    const [editingId, setEditingId] = useState(null);
+
+    const handleEdit = (delay) => {
+
+          setEditingId(delay.id);
+
+          setDelay({
+              voyageNumber: delay.voyageNumber,
+              delayReason: delay.delayReason,
+              delayHours: delay.delayHours,
+              reportedPort: delay.reportedPort,
+              reportedDate: delay.reportedDate,
+              remarks: delay.remarks || "Updated Delay"
+          });
+
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+          });
+      };
+
+      const handleDelete = async (id) => {
+
+       const confirmed = window.confirm(
+            "Delete this delay report?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        try {
+
+            await api.delete(
+                `/delays/${id}`
+            );
+
+            toast.success(
+                "Delay deleted successfully."
+            );
+
+            fetchDelays();
+
+        } catch (error) {
+
+            toast.error(
+                error.response?.data?.message ||
+                "Failed to delete delay."
             );
         }
     };
@@ -237,11 +312,13 @@ function Delays() {
           <button
               className="save-btn"
               onClick={handleSubmit}
-              disabled={loading}
+              
           >
-              {loading
-                  ? "Saving..."
-                  : "Create Delay"}
+              {
+                  editingId
+                      ? "Update Delay"
+                      : "Create Delay"
+              }
           </button>
 
       </div>
@@ -261,6 +338,7 @@ function Delays() {
                         <th>Delay Hours</th>
                         <th>Reported Port</th>
                         <th>Reported Date</th>
+                        <th>Actions</th>
 
                     </tr>
 
@@ -281,7 +359,7 @@ function Delays() {
                                       {delay.delayReason}
                                   </td>
 
-                                  <td>
+                                  <td className='delay-hours '>
                                       {delay.delayHours}
                                   </td>
 
@@ -291,6 +369,28 @@ function Delays() {
 
                                   <td>
                                       {delay.reportedDate}
+                                  </td>
+
+                                  <td className="action-cell">
+
+                                      <button
+                                          className="edit-btn"
+                                          onClick={() =>
+                                              handleEdit(delay)
+                                          }
+                                      >
+                                          Edit
+                                      </button>
+
+                                      <button
+                                          className="delete-btn"
+                                          onClick={() =>
+                                              handleDelete(delay.id)
+                                          }
+                                      >
+                                          Delete
+                                      </button>
+
                                   </td>
 
                               </tr>

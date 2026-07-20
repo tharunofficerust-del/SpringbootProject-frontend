@@ -138,3 +138,49 @@
         padding: 20px;
     }
 }
+
+.action-cell {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn {
+    border: none;
+    background: #2563eb;
+    color: white;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.edit-btn:hover {
+    opacity: 0.9;
+}
+
+.delete-btn {
+    border: none;
+    background: #ef4444;
+    color: white;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    opacity: 0.9;
+}
+
+.delay-hours {
+    color: red;
+    font-weight: 600;
+}

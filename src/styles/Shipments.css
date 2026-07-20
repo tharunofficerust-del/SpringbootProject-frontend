@@ -140,3 +140,8 @@ th {
     background: #dcfce7;
     color: #15803d;
 }
+
+.shipment-status.CANCELLED{
+    background-color: #ef4444;
+    color: white;
+}
