@@ -209,6 +209,8 @@ function Delays() {
       <div className="delay-container">
         
         <div className="delay-form">
+        
+        <h2>Create Delays</h2>
 
           <div className="form-row">
 

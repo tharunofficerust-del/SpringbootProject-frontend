@@ -17,11 +17,12 @@ function Sidebar() {
     return (
         <div className="sidebar">
             
-            <div className="logo">
-                <span>TV</span>
-            </div>
-
             <nav>
+
+                <div className="menu-title">
+                    MAIN MENU
+                </div>
+
                 <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
                     <LayoutDashboard size={20} /> Dashboard
                 </NavLink>
@@ -39,9 +40,18 @@ function Sidebar() {
                 </NavLink>
             </nav>
 
-            <div className="footer">
-                <p>Developed by Tharun</p>
+            <div className="sidebar-bottom">
+
+                 {/* <div className="logo">
+                    <span>TV</span>
+                </div> */}
+
+                <div className="footer">
+                    <p>Developed by Tharun Vijay</p>
+                    <p>STEP Flow v1.0</p>
+                </div>
             </div>
+            
 
         </div>
     );

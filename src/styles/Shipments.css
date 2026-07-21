@@ -74,15 +74,24 @@ table {
     margin-top: 20px;
 }
 
-th,
+
 td {
-    padding: 15px;
-    text-align: left;
+    padding: 20px 24px;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #f3f4f6;
+    background: #f8fafc;
+
+    padding: 20px 24px;
+
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+
+    color: #64748b;
 }
 
 .priority {
@@ -174,4 +183,12 @@ th {
 tbody tr:hover {
     background: #eeeeee;
     transition: 0.01s;
+}
+
+th:first-child {
+    border-top-left-radius: 10px;
+}
+
+th:last-child {
+    border-top-right-radius: 10px;
 }

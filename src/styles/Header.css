@@ -11,15 +11,19 @@
 }
 
 .header h2 {
-    font-size: 24px;
-    color: #1f2937;
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 4px;
+
 }
 
 .header p {
-    color: #6b7280;
-    margin-top: 5px;
+    color: #64748b;
+    font-size: 15px;
 }
 
 .header-right {
     color: #6b7280;
+    display: flex;
+    gap: 15px;
 }

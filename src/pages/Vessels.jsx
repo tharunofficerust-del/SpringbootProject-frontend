@@ -187,10 +187,29 @@ function Vessels() {
 
 
     return (
+
         <div className="vessels-container">
 
             <h1 className="page-title"> <Ship size={35} /> Vessel Management</h1>
 
+            <div
+                className="form-toggle"
+                onClick={() => setShowForm(!showForm)}
+            >
+                {showForm ? (
+                    <>
+                        <ChevronDown size={20} />
+                        <span>Hide Form</span>
+                    </>
+                ) : (
+                    <>
+                        <ChevronRight size={20} />
+                        <span>Add Vessel</span>
+                    </>
+                )}
+            </div>
+
+                    {showForm && (
             <div className="vessel-form">
 
                 <h2>Add Vessel</h2>
@@ -309,6 +328,8 @@ function Vessels() {
                 </button>
 
             </div>
+            )}
+            
 
             <div className="vessel-table">
 
