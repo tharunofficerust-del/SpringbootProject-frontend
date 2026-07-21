@@ -36,6 +36,16 @@
     border: 1px solid #d1d5db;
     border-radius: 5px;
 }
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.15);
+
+    transition: all 0.2s ease;
+}
 
 .save-btn {
     margin-top: 20px;
@@ -144,4 +154,24 @@ th {
 .shipment-status.CANCELLED{
     background-color: #ef4444;
     color: white;
+}
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.page-title svg {
+    flex-shrink: 0;
+}
+
+.pagination button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+tbody tr:hover {
+    background: #eeeeee;
+    transition: 0.01s;
 }

@@ -2,6 +2,15 @@ import { useState , useEffect } from "react";
 import "../styles/Vessels.css";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import { Save } from "lucide-react";
+import {
+    Ship,
+    Package,
+    AlertTriangle,
+    LayoutDashboard,
+    ChevronLeft,
+    ChevronRight
+} from "lucide-react";
 
 function Vessels() {
 
@@ -180,7 +189,7 @@ function Vessels() {
     return (
         <div className="vessels-container">
 
-            <h1>Vessel Management</h1>
+            <h1 className="page-title"> <Ship size={35} /> Vessel Management</h1>
 
             <div className="vessel-form">
 
@@ -296,7 +305,7 @@ function Vessels() {
                
 
                 <button className="save-btn" onClick={handleSubmit}>
-                    Save Vessel
+                     <Save size={20} /> Save Vessel
                 </button>
 
             </div>
@@ -416,7 +425,7 @@ function Vessels() {
                         disabled={page === 0}
                         onClick={() => setPage(page - 1)}
                     >
-                        Previous
+                       <ChevronLeft size={18} /> Previous
                     </button>
 
                     <span>
@@ -427,7 +436,7 @@ function Vessels() {
                         disabled={page === totalPages - 1}
                         onClick={() => setPage(page + 1)}
                     >
-                        Next
+                         Next <ChevronRight size={18} />
                     </button>
 
                 </div>

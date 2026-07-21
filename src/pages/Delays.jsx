@@ -4,7 +4,13 @@ import { useState, useEffect } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
 import { ImTextColor } from 'react-icons/im';
-
+import { Save , AlertTriangle } from "lucide-react";
+import {
+    Pencil,
+    Trash2,
+    ChevronLeft,
+    ChevronRight
+} from "lucide-react";
 
 function Delays() {
 
@@ -198,7 +204,7 @@ function Delays() {
 
     <div className="delay-page">
 
-      <h1>Delay Management</h1>
+      <h1 className="page-title" ><AlertTriangle size={35} /> Delay Management</h1>
 
       <div className="delay-container">
         
@@ -314,6 +320,7 @@ function Delays() {
               onClick={handleSubmit}
               
           >
+            <Save size={20} />
               {
                   editingId
                       ? "Update Delay"
@@ -379,7 +386,7 @@ function Delays() {
                                               handleEdit(delay)
                                           }
                                       >
-                                          Edit
+                                          <Pencil size={16}/> Edit
                                       </button>
 
                                       <button
@@ -388,7 +395,7 @@ function Delays() {
                                               handleDelete(delay.id)
                                           }
                                       >
-                                          Delete
+                                        <Trash2 size={16}/> Delete
                                       </button>
 
                                   </td>

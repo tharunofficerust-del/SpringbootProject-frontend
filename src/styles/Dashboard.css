@@ -117,3 +117,12 @@
     font-weight: 600;
     color: #1f2937;
 }
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.page-title svg {
+    flex-shrink: 0;
+}

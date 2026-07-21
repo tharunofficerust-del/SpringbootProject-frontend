@@ -2,6 +2,15 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import "../styles/Shipments.css";
 import { toast } from "react-toastify";
+import { Save } from "lucide-react";
+import {
+    Ship,
+    Package,
+    AlertTriangle,
+    LayoutDashboard,
+    ChevronLeft,
+    ChevronRight
+} from "lucide-react";
 
 function Shipments() {
 
@@ -132,7 +141,7 @@ function Shipments() {
   return (
       <div className="shipments-page">
 
-          <h1>Shipment Management</h1>
+          <h1 className="page-title"><Package size={35} /> Shipment Management</h1>
 
           <div className="shipment-container">
 
@@ -247,7 +256,7 @@ function Shipments() {
                           </div>
                       </div>
                       <button className="save-btn" onClick={handleSubmit} disabled={loading} >
-                          {loading ? "Saving..." : "Save Shipment"}
+                          <Save size={20} />{loading ? "Saving..." : "Save Shipment"}
                       </button>
               </div>
 {/* ---------------------------------------------------------------------------------------- */}
@@ -347,7 +356,7 @@ function Shipments() {
                           }
                           disabled={currentPage === 0}
                       >
-                          Previous
+                         <ChevronLeft size={18} /> Previous
                       </button>
 
                       <span>
@@ -364,7 +373,7 @@ function Shipments() {
                               currentPage === totalPages - 1
                           }
                       >
-                          Next
+                          Next <ChevronRight size={18} />
                       </button>
 
                   </div>

@@ -1,10 +1,17 @@
 import { NavLink } from "react-router-dom";
+// import {
+//     FaHome,
+//     FaShip,
+//     FaBox,
+//     FaExclamationTriangle
+// } from "react-icons/fa";
+
 import {
-    FaHome,
-    FaShip,
-    FaBox,
-    FaExclamationTriangle
-} from "react-icons/fa";
+    Ship,
+    Package,
+    AlertTriangle,
+    LayoutDashboard
+} from "lucide-react";
 
 function Sidebar() {
     return (
@@ -16,19 +23,19 @@ function Sidebar() {
 
             <nav>
                 <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
-                    <FaHome /> Dashboard
+                    <LayoutDashboard size={20} /> Dashboard
                 </NavLink>
 
                 <NavLink to="/vessels" className={({ isActive }) => isActive ? "active" : ""}>
-                    <FaShip /> Vessels
+                    <Ship size={20} />Vessels
                 </NavLink>
 
                 <NavLink to="/shipments" className={({ isActive }) => isActive ? "active" : ""}>
-                    <FaBox /> Shipments
+                   <Package size={20} /> Shipments
                 </NavLink>
 
                 <NavLink to="/delays" className={({ isActive }) => isActive ? "active" : ""}>
-                    <FaExclamationTriangle /> Delays
+                    <AlertTriangle size={20} />Delays
                 </NavLink>
             </nav>
 

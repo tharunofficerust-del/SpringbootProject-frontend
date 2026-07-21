@@ -2,6 +2,12 @@ import "../styles/Dashboard.css";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import {
+    Ship,
+    Package,
+    AlertTriangle,
+    LayoutDashboard
+} from "lucide-react";
 
 function Dashboard() {
 
@@ -109,7 +115,7 @@ function Dashboard() {
     return (
         <div className="dashboard">
 
-            <h1>Dashboard</h1>
+            <h1 className="page-title"> <LayoutDashboard size={35} />  Dashboard</h1>
 
             <div className="dashboard-cards">
 
