@@ -122,7 +122,8 @@ function Vessels() {
                 scheduleStatus: "PLANNED"
             });
 
-                console.log("Posted successfully:") //just testing - remove showing actual data after fixing
+                console.log("Posted successfully:") 
+                //just testing - remove showing actual data after fixing
 
         } catch(error){
                 const data = error.response.data;
@@ -192,24 +193,6 @@ function Vessels() {
 
             <h1 className="page-title"> <Ship size={35} /> Vessel Management</h1>
 
-            <div
-                className="form-toggle"
-                onClick={() => setShowForm(!showForm)}
-            >
-                {showForm ? (
-                    <>
-                        <ChevronDown size={20} />
-                        <span>Hide Form</span>
-                    </>
-                ) : (
-                    <>
-                        <ChevronRight size={20} />
-                        <span>Add Vessel</span>
-                    </>
-                )}
-            </div>
-
-                    {showForm && (
             <div className="vessel-form">
 
                 <h2>Add Vessel</h2>
@@ -328,8 +311,6 @@ function Vessels() {
                 </button>
 
             </div>
-            )}
-            
 
             <div className="vessel-table">
 
